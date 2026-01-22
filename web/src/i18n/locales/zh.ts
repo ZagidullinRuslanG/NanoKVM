@@ -276,6 +276,20 @@ const zh = {
           absolute: '绝对模式',
           relative: '相对模式'
         },
+        usbIdentity: {
+          title: 'USB 设备标识',
+          description: '更改设备在设备管理器中的显示方式',
+          preset: '预设',
+          custom: '自定义',
+          vid: '厂商 ID',
+          pid: '产品 ID',
+          manufacturer: '制造商',
+          product: '产品名称',
+          save: '保存',
+          saveSuccess: '设置已保存，重启后生效。',
+          saveFailed: '保存设置失败',
+          rebootRequired: '需要重启才能生效'
+        },
         mdns: {
           description: '启用 mDNS 发现服务',
           tip: '如果您未使用此功能，建议将其关闭'
