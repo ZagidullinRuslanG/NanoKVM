@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS base_apt
+FROM --platform=linux/amd64 ubuntu:24.04 AS base_apt
 
 # RUN echo 'Acquire::http::Proxy "http://cache.lan:3142";' > /etc/apt/apt.conf.d/00cacher
 RUN userdel -r ubuntu
@@ -21,10 +21,12 @@ RUN wget -O /tmp/host-tools.tar.gz https://sophon-file.sophon.cn/sophon-prod-s3/
 FROM base_apt AS golang
 
 USER root
-RUN bash -c 'wget -O /tmp/go.tar.gz https://go.dev/dl/go1.25.0.linux-$([ `uname -m` == "x86_64" ] && echo "amd64" || uname -m).tar.gz' \
+RUN ARCH=$(uname -m) \
+    && if [ "$ARCH" = "x86_64" ]; then GOARCH="amd64"; elif [ "$ARCH" = "aarch64" ]; then GOARCH="arm64"; else GOARCH="$ARCH"; fi \
+    && wget -O /tmp/go.tar.gz "https://go.dev/dl/go1.24.0.linux-${GOARCH}.tar.gz" \
     && tar -C /usr/local -zxvf /tmp/go.tar.gz \
     && export PATH=$PATH:/usr/local/go/bin \
-    && echo "Installed golang" &&  go version
+    && echo "Installed golang" && go version
 
 COPY server /tmp/go_cache
 
@@ -66,7 +68,7 @@ ENV PATH="$PATH:/usr/local/host-tools/gcc/riscv64-linux-musl-x86_64/bin"
 
 # Install SDK
 COPY --from=sdk /home/$DOCKER_USER/MaixCDK /home/$DOCKER_USER/MaixCDK
-COPY --chmod=+x docker/entrypoint /entrypoint
+COPY --chmod=0755 docker/entrypoint /entrypoint
 
 RUN echo "Verify build tools" \
     && echo "Installed host-tools gcc" && riscv64-unknown-linux-musl-gcc -v \

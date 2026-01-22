@@ -29,3 +29,17 @@ type AddShortcutReq struct {
 type DeleteShortcutReq struct {
 	ID string `validate:"required"`
 }
+
+type UsbIdentityRsp struct {
+	VID          string `json:"vid"`
+	PID          string `json:"pid"`
+	Manufacturer string `json:"manufacturer"`
+	Product      string `json:"product"`
+}
+
+type SetUsbIdentityReq struct {
+	VID          string `json:"vid" validate:"required"`
+	PID          string `json:"pid" validate:"required"`
+	Manufacturer string `json:"manufacturer"`
+	Product      string `json:"product"`
+}

@@ -308,6 +308,20 @@ const en = {
           absolute: 'Absolute Mode',
           relative: 'Relative Mode'
         },
+        usbIdentity: {
+          title: 'USB Device Identity',
+          description: 'Change how the device appears in Device Manager',
+          preset: 'Preset',
+          custom: 'Custom',
+          vid: 'Vendor ID',
+          pid: 'Product ID',
+          manufacturer: 'Manufacturer',
+          product: 'Product Name',
+          save: 'Save',
+          saveSuccess: 'Settings saved. Reboot to apply changes.',
+          saveFailed: 'Failed to save settings',
+          rebootRequired: 'Reboot required to apply changes'
+        },
         mdns: {
           description: 'Enable mDNS discovery service',
           tip: "Turning it off if it's not needed"

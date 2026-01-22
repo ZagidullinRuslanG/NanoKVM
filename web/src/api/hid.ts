@@ -43,3 +43,19 @@ export function deleteShortcut(id: string) {
   };
   return http.delete('/api/hid/shortcut', data);
 }
+
+// get usb device identity
+export function getUsbIdentity() {
+  return http.get('/api/hid/identity');
+}
+
+// set usb device identity
+export function setUsbIdentity(vid: string, pid: string, manufacturer: string, product: string) {
+  const data = {
+    vid,
+    pid,
+    manufacturer,
+    product
+  };
+  return http.post('/api/hid/identity', data);
+}
