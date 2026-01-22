@@ -53,3 +53,19 @@ export function getLeaderKey() {
 export function setLeaderKey(key: string) {
   return http.post('/api/hid/shortcut/leader-key', { key });
 }
+
+// get usb device identity
+export function getUsbIdentity() {
+  return http.get('/api/hid/identity');
+}
+
+// set usb device identity
+export function setUsbIdentity(vid: string, pid: string, manufacturer: string, product: string) {
+  const data = {
+    vid,
+    pid,
+    manufacturer,
+    product
+  };
+  return http.post('/api/hid/identity', data);
+}

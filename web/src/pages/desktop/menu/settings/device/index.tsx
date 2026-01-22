@@ -9,6 +9,7 @@ import { Oled } from './oled.tsx';
 import { Reboot } from './reboot.tsx';
 import { Ssh } from './ssh.tsx';
 import { Tls } from './tls.tsx';
+import { UsbIdentity } from './usb-identity.tsx';
 import { VirtualDevices } from './virtual-devices.tsx';
 import { Wifi } from './wifi.tsx';
 
@@ -28,6 +29,7 @@ export const Device = () => {
         <Divider className="opacity-50" />
 
         <VirtualDevices />
+        <UsbIdentity />
         <Divider className="opacity-50" />
 
         <Oled />
